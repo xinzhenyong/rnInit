@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {Dimensions, Image, StyleSheet, View} from 'react-native';
+import {Image, StyleSheet, View} from 'react-native';
 import TabNavigator from 'react-native-tab-navigator';
-import My from './my/My';
-import Home from './home/Home';
-import Order from './order/Order';
 import {setDp} from '../utils/screenUtils';
+import Home from './home/Home';
+import My from './my/My';
+import Order from './order/Order';
 
 const dataSource = [
   {
@@ -30,8 +30,6 @@ const dataSource = [
   },
 ];
 
-const screenW = Dimensions.get('window').width;
-
 export default class Tab extends Component {
   constructor(props) {
     super(props);
@@ -49,8 +47,8 @@ export default class Tab extends Component {
         <TabNavigator.Item
           title={!(i === 0 && this.state.selectedTab === 'Home') ? this.title : null}
           selected={this.state.selectedTab === item.tabPage}
-          titleStyle={{color: 'black', fontSize: setDp(20)}}
-          selectedTitleStyle={{color: '#101010'}}
+          titleStyle={styles.titleStyle}
+          selectedTitleStyle={styles.titleText}
           renderIcon={() => <Image style={styles.tabIcon} source={item.icon} />}
           renderSelectedIcon={() => (
             <Image
@@ -58,7 +56,7 @@ export default class Tab extends Component {
               source={item.selectedIcon}
             />
           )}
-          tabStyle={{alignSelf: 'center'}}
+          tabStyle={styles.tabStyle}
           onPress={() => {
             this.select(item);
           }}
@@ -83,6 +81,9 @@ export default class Tab extends Component {
   }
 }
 const styles = StyleSheet.create({
+  tabStyle: {alignSelf: 'center'},
+  titleText: {color: '#101010'},
+  titleStyle: {color: 'black', fontSize: setDp(20)},
   container: {
     flex: 1,
     backgroundColor: '#ffffff',

@@ -157,8 +157,7 @@ export function borderWidthLR(left, right = left) {
 export function isIphoneX() {
   return (
     Platform.OS === 'ios' &&
-    ((screenH === X_HEIGHT && screenW === X_WIDTH) ||
-      (screenH === X_WIDTH && screenW === X_HEIGHT))
+    ((screenH === X_HEIGHT && screenW === X_WIDTH) || (screenH === X_WIDTH && screenW === X_HEIGHT))
   );
 }
 
@@ -176,6 +175,8 @@ export function ifIphoneX(iphoneXStyle, iosStyle = {}, androidStyle) {
   if (Platform.OS === 'ios') {
     return iosStyle;
   }
-  if (androidStyle) return androidStyle;
+  if (androidStyle) {
+    return androidStyle;
+  }
   return iosStyle;
 }

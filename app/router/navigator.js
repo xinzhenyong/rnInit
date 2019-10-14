@@ -1,9 +1,10 @@
 import {createStackNavigator, createAppContainer} from 'react-navigation';
-import Advertising from './AdvertisingPage/Advertising';
+import Advertising from './advertisingPage/Advertising';
 import Home from './home/Home';
 import Order from './order/Order';
 import My from './my/My';
 import Tab from './Tab';
+import Test from './order/Test';
 
 const SignedOutNavigator = createStackNavigator(
   {
@@ -21,6 +22,9 @@ const SignedOutNavigator = createStackNavigator(
     },
     My: {
       screen: My,
+    },
+    Test: {
+      screen: Test,
     },
   },
   {

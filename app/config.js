@@ -6,7 +6,7 @@
 /**
  * 后端微服务统一地址
  */
-export const BASE_URL = 'https://dsx-api-test1.1ziton.com/';
+export const BASE_URL = 'https://dsx-api-test1.fangmili.com/';
 
 export const SHARE_PAGE_URL = 'https://dsx-test1.1ziton.com/#/download';
 

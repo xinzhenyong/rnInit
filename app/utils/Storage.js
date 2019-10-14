@@ -1,5 +1,5 @@
 // import { Component } from "react";
-import { AsyncStorage } from 'react-native';
+import {AsyncStorage} from 'react-native';
 
 class Storage {
   /**
@@ -39,7 +39,6 @@ class Storage {
     // eslint-disable-next-line no-undef
     return DeviceStorage.get(key)
       .then((item) => {
-        // eslint-disable-next-line no-param-reassign
         value = typeof value === 'string' ? value : Object.assign({}, item, value);
         return AsyncStorage.setItem(key, JSON.stringify(value));
       })

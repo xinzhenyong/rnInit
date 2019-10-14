@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import {ACCESS_TOKEN} from '../../config';
 import Storage from '../../utils/Storage';
 
+/** 启动过渡页 */
 class Advertising extends Component {
   constructor(props) {
     super(props);

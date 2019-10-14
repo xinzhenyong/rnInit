@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import {setDp} from '../../utils/screenUtils';
+import Header from '../../component/Header';
 
 class My extends Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class My extends Component {
   render() {
     return (
       <View style={styles.bg}>
-        <Text> My </Text>
+        <Header title="我的" showBack={false} showMessage={false} />
         <Text style={styles.plusStyle}>Count:{`${this.props.countReducer || 0}`}</Text>
       </View>
     );
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
   homeText: {
     fontSize: 30,
   },
-  bg: {flex: 1, justifyContent: 'center', alignItems: 'center'},
+  bg: {flex: 1},
   plusStyle: {
     fontSize: setDp(30),
     color: 'red',

@@ -1,11 +1,8 @@
-import reactotron from 'reactotron-react-native';
 import {DeviceEventEmitter} from 'react-native';
 import {API_VERSION, BASE_URL} from '../config';
-// import JPush from '../utils/JPush';
 import LoadingUtil from '../utils/loadingUtils';
 import {getToken} from './api';
 import {ToastUtil} from './Toast';
-import {API_MASTER_VERSION} from '../api_version';
 import {NET_NOT_CONNECT} from '../const/AppConst';
 
 export default class FetchUtils {
@@ -17,13 +14,13 @@ export default class FetchUtils {
         return;
       }
       fetch(baseurl + url)
-        .then(response => {
+        .then((response) => {
           if (response) {
             return response.json() || {data: []};
           }
           return {code: response.status, desc: NET_NOT_CONNECT};
         })
-        .then(result => {
+        .then((result) => {
           resolve(result || {});
         })
         .catch(() => {
@@ -31,7 +28,7 @@ export default class FetchUtils {
         });
     });
 
-  static getNeedUrl = url =>
+  static getNeedUrl = (url) =>
     new Promise((resolve, reject) => {
       if (!global.isConnected) {
         ToastUtil.center('当前无网络！');
@@ -39,13 +36,13 @@ export default class FetchUtils {
         return;
       }
       fetch(url)
-        .then(response => {
+        .then((response) => {
           if (response) {
             return response.json() || {data: []};
           }
           return {code: response.status, desc: NET_NOT_CONNECT};
         })
-        .then(result => {
+        .then((result) => {
           resolve(result || {});
         })
         .catch(() => {
@@ -55,8 +52,7 @@ export default class FetchUtils {
 
   static post = (url, data) =>
     getToken()
-      .then(token => {
-        reactotron.log('token', token);
+      .then((token) => {
         // console.log('url', url);
         // console.log('data', data);
         // console.log('token', token);
@@ -75,23 +71,19 @@ export default class FetchUtils {
             },
             body: JSON.stringify(data),
           })
-            .then(response => {
+            .then((response) => {
               if (response) {
                 return response.json() || {data: []};
               }
               return {code: response.status, desc: NET_NOT_CONNECT};
             })
-            .then(result => {
+            .then((result) => {
               //Token过期退出登录
-              if (
-                result.code === 4100 &&
-                url !== `${API_MASTER_VERSION}/worker/getBasicInfo`
-              ) {
-                ToastUtil.center(result.desc || '已超过有效期，请重新登录');
-                DeviceEventEmitter.emit('loginOut');
-                return;
-              }
-              reactotron.log('result', result);
+              // if (result.code === 4100 && url !== `${API_MASTER_VERSION}/worker/getBasicInfo`) {
+              //   ToastUtil.center(result.desc || '已超过有效期，请重新登录');
+              //   DeviceEventEmitter.emit('loginOut');
+              //   return;
+              // }
               resolve(result || {});
             })
             .catch(() => {
@@ -99,14 +91,13 @@ export default class FetchUtils {
             });
         });
       })
-      .catch(error => {
+      .catch((error) => {
         ToastUtil.center('获取token失败', error);
       });
 
   static postCESHI = (url, data) =>
     getToken()
-      .then(token => {
-        reactotron.log('postParam', token);
+      .then((token) => {
         return new Promise((resolve, reject) => {
           if (!global.isConnected) {
             ToastUtil.center(NET_NOT_CONNECT);
@@ -121,37 +112,35 @@ export default class FetchUtils {
             },
             body: JSON.stringify(data),
           })
-            .then(response => {
+            .then((response) => {
               if (response) {
                 return response.json() || {data: []};
               }
               return {code: response.status, desc: NET_NOT_CONNECT};
             })
-            .then(result => {
+            .then((result) => {
               if (result.code === 4100) {
                 DeviceEventEmitter.emit('loginOut');
                 return;
               }
-              reactotron.log('resultCESHI', result);
               resolve(result || {});
             })
-            .catch(error => {
-              reactotron.log('errorCESHI', error);
+            .catch((error) => {
               reject();
             });
         });
       })
-      .catch(error => {
+      .catch((error) => {
         ToastUtil.center('获取token失败', error);
       });
 
   static postNoVerification = (url, data) =>
     new Promise((resolve, reject) => {
-      if (!global.isConnected) {
-        ToastUtil.center('当前无网络！');
-        LoadingUtil.dismissLoading();
-        return;
-      }
+      // if (!global.isConnected) {
+      //   ToastUtil.center('当前无网络！');
+      //   LoadingUtil.dismissLoading();
+      //   return;
+      // }
       fetch(BASE_URL + url, {
         method: 'POST',
         headers: {
@@ -159,13 +148,13 @@ export default class FetchUtils {
         },
         body: JSON.stringify(data),
       })
-        .then(response => {
+        .then((response) => {
           if (response) {
             return response.json() || {data: []};
           }
           return {code: response.status, desc: NET_NOT_CONNECT};
         })
-        .then(result => {
+        .then((result) => {
           resolve(result || {});
         })
         .catch(() => {
@@ -198,18 +187,16 @@ export default class FetchUtils {
         },
         body: data,
       })
-        .then(response => {
+        .then((response) => {
           if (response) {
             return response.json() || {data: []};
           }
           return {code: response.status, desc: NET_NOT_CONNECT};
         })
-        .then(result => {
+        .then((result) => {
           resolve(result || {});
-          reactotron.log('resolve', result);
         })
         .catch(() => {
-          // reactotron.log('error', error);
           reject();
         });
     });
@@ -217,8 +204,7 @@ export default class FetchUtils {
 
   static loginOut = () =>
     getToken()
-      .then(token => {
-        reactotron.log('token', token);
+      .then((token) => {
         return new Promise((resolve, reject) => {
           if (!global.isConnected) {
             ToastUtil.center(NET_NOT_CONNECT);
@@ -232,53 +218,27 @@ export default class FetchUtils {
             },
             body: JSON.stringify({token}),
           })
-            .then(response => {
+            .then((response) => {
               if (response) {
                 return response.json() || {data: []};
               }
               return {code: response.status, desc: NET_NOT_CONNECT};
             })
-            .then(result => {
+            .then((result) => {
               resolve(result || {});
-              // reactotron.log('result', result)
             })
             .catch(() => {
-              // reactotron.log('error', error)
               reject();
-              // ToastUtil.center(error || error.desc)
             });
         });
       })
-      .catch(error => {
+      .catch((error) => {
         ToastUtil.center('退出登录失败:', error);
       });
 
-  // static unbindingMessage = () => {
-  //   JPush.getRegistrationID(registrationId => {
-  //     const params = {
-  //       receive: 'USER', //用户类型 USER:APP用户 PLATFORM:运营用户 MERCHANT:商户用户
-  //       resourceType: 'APP_JPUSH', //绑定类型 SMS:短信 EMAIL:邮箱 APP_JPUSH:极光 APP_GETUI:信鸽
-  //       resource: registrationId, //绑定信息 和绑定类型相关,手机号,邮箱,极光reg_id等
-  //     };
-  //     FetchUtils.post(
-  //       `message/${API_VERSION}/api/userResource/unbinding`,
-  //       params,
-  //     )
-  //       .then(result => {
-  //         if (result.code === 2000) {
-  //           // ToastUtil.center('registrationId解绑成功');
-  //         } else {
-  //           // ToastUtil.center('registrationId解绑失败');
-  //         }
-  //       })
-  //       .catch(() => {});
-  //   });
-  // };
-
   static postUrl = (url, data) =>
     getToken()
-      .then(token => {
-        reactotron.log('postParam', token);
+      .then((token) => {
         return new Promise((resolve, reject) => {
           if (!global.isConnected) {
             ToastUtil.center(NET_NOT_CONNECT);
@@ -293,28 +253,26 @@ export default class FetchUtils {
             },
             body: JSON.stringify(data),
           })
-            .then(response => {
+            .then((response) => {
               if (response) {
                 return response.json() || {data: []};
               }
               return {code: response.status, desc: NET_NOT_CONNECT};
             })
-            .then(result => {
+            .then((result) => {
               if (result.code === 4100) {
                 DeviceEventEmitter.emit('loginOut');
                 return;
               }
-              // eslint-disable-next-line no-console
               console.log(`result===>${result}`);
               resolve(result || {});
             })
             .catch(() => {
               reject();
-              // ToastUtil.center(error || error.desc);
             });
         });
       })
-      .catch(error => {
+      .catch((error) => {
         ToastUtil.center('获取token失败', error);
       });
 }

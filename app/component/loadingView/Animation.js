@@ -10,7 +10,7 @@ export default class LottieAnimation extends Component {
   render() {
     return (
       <Animation
-        ref={ref => {
+        ref={(ref) => {
           this.animation = ref;
         }}
         style={{

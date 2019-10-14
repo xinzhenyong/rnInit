@@ -17,6 +17,7 @@
             + advertisingPage
             + home 
                     +redux    ->每个模块各种要用到的redux，对应的action与reducer写在同一个文件方便代码阅读
+                    +component->私有的组件
             + my
                     +redux    ->每个模块各种要用到的redux，对应的action与reducer写在同一个文件方便代码阅读
             - order
