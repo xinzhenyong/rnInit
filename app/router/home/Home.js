@@ -1,13 +1,19 @@
-import React, {Component} from 'react';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
-import {connect} from 'react-redux';
-import {setDp} from '../../utils/screenUtils';
-import {add} from '../order/redux/CountReducer';
+import React, { Component } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, NativeModules } from 'react-native';
+import { connect } from 'react-redux';
+import { setDp } from '../../utils/screenUtils';
+import { add } from '../order/redux/CountReducer';
+
+const { Download } = NativeModules;
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+  }
+
+  componentDidMount(){
+    console.log('Download',Download);
   }
 
   render() {
@@ -29,7 +35,7 @@ const styles = StyleSheet.create({
   homeText: {
     fontSize: 30,
   },
-  bg: {flex: 1, justifyContent: 'center', alignItems: 'center'},
+  bg: { flex: 1, justifyContent: 'center', alignItems: 'center' },
   plusStyle: {
     fontSize: setDp(30),
     color: 'red',
@@ -43,6 +49,6 @@ export default connect(
       countReducer: state.getCount,
     }),
   (dispatch) => ({
-    count: (data) => dispatch(add()),
+    count: () => dispatch(add()),
   }),
 )(Home);

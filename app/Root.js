@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-import {BackHandler, Platform} from 'react-native';
+import React, { Component } from 'react';
+import { BackHandler, Platform } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 // import NetInfo from 'react-native-splash-screen';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import AppNavigator from './router/navigator';
 // import {ToastUtil} from './service/Toast';
 import configureStore from './store/Store';

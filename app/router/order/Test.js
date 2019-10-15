@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import {View, Text, FlatList, RefreshControl, StyleSheet} from 'react-native';
+import React, { Component } from 'react';
+import { View, Text, FlatList, RefreshControl, StyleSheet } from 'react-native';
 import Header from '../../component/Header';
-import {API_VERSION} from '../../config';
+import { API_VERSION } from '../../config';
 import FetchUtils from '../../utils/fetch';
 
 export default class Test extends Component {
@@ -13,15 +13,13 @@ export default class Test extends Component {
     };
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.loadData(true);
   }
 
-  loadData(isRefresh) {
+  loadData() {
     FetchUtils.postNoVerification(`basedata/${API_VERSION}/api/area/findAppAreaList`, {})
       .then((result) => {
-        console.log(result);
-
         if (result.code === 2000) {
           this.setState({
             data: result.data,

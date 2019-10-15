@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import {Image, StyleSheet, View} from 'react-native';
+import React, { Component } from 'react';
+import { Image, StyleSheet, View } from 'react-native';
 import TabNavigator from 'react-native-tab-navigator';
-import {setDp} from '../utils/screenUtils';
+import { setDp } from '../utils/screenUtils';
 import Home from './home/Home';
 import My from './my/My';
 import Order from './order/Order';
@@ -39,8 +39,7 @@ export default class Tab extends Component {
   }
 
   render() {
-    let {} = this.state;
-    const {navigation} = this.props;
+    const { navigation } = this.props;
     const tabViews = dataSource.map((item, i) => {
       this.title = item.tabName;
       return (
@@ -77,13 +76,13 @@ export default class Tab extends Component {
   componentWillUnmount() {}
 
   select(item) {
-    this.setState({selectedTab: item.tabPage});
+    this.setState({ selectedTab: item.tabPage });
   }
 }
 const styles = StyleSheet.create({
-  tabStyle: {alignSelf: 'center'},
-  titleText: {color: '#101010'},
-  titleStyle: {color: 'black', fontSize: setDp(20)},
+  tabStyle: { alignSelf: 'center' },
+  titleText: { color: '#101010' },
+  titleStyle: { color: 'black', fontSize: setDp(20) },
   container: {
     flex: 1,
     backgroundColor: '#ffffff',

@@ -1,4 +1,4 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 import getCount from '../router/order/redux/CountReducer';
 
 const rootReducer = combineReducers({

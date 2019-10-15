@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Header from '../../component/Header';
-import {setDp} from '../../utils/screenUtils';
+import { setDp } from '../../utils/screenUtils';
 
 export default class Order extends Component {
   constructor(props) {
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     color: 'red',
     fontSize: setDp(30),
   },
-  bg: {flex: 1},
+  bg: { flex: 1 },
   jump: {
     flex: 1,
     justifyContent: 'center',

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Animation from 'lottie-react-native';
 
 export default class LottieAnimation extends Component {

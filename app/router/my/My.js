@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import {connect} from 'react-redux';
-import {setDp} from '../../utils/screenUtils';
+import React, { Component } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
+import { setDp } from '../../utils/screenUtils';
 import Header from '../../component/Header';
 
 class My extends Component {
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   homeText: {
     fontSize: 30,
   },
-  bg: {flex: 1},
+  bg: { flex: 1 },
   plusStyle: {
     fontSize: setDp(30),
     color: 'red',

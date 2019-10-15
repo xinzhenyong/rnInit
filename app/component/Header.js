@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import React, {Component} from 'react';
-import {Dimensions, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {setDp} from '../utils/screenUtils';
+import React, { Component } from 'react';
+import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { setDp } from '../utils/screenUtils';
 import backImage from '../assest/fanhui.png';
 import messageImage from '../assest/message.png';
 
@@ -18,7 +18,7 @@ export default class Header extends Component {
   };
 
   render() {
-    const {goBack} = this.props.navigation;
+    const { goBack } = this.props.navigation;
     return (
       <View style={this.props.headerStyle}>
         <View style={styles.headerView}>
@@ -26,7 +26,7 @@ export default class Header extends Component {
             <TouchableOpacity
               onPress={() => (this.props.backPress ? this.props.backPress() : goBack())}
               style={styles.leftBtn}>
-              <Image source={backImage} style={{width: setDp(10), height: setDp(20)}} />
+              <Image source={backImage} style={{ width: setDp(10), height: setDp(20) }} />
             </TouchableOpacity>
           ) : (
             <View style={styles.leftBtn} />
@@ -57,7 +57,7 @@ export default class Header extends Component {
   }
 
   seeMessage() {
-    this.props.navigation && this.props.navigation.navigate('SummaryMessageRecord');
+    if (this.props.navigation) this.props.navigation.navigate('SummaryMessageRecord');
   }
 }
 
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: setDp(10),
   },
-  messageImage: {width: setDp(20), height: setDp(25), marginLeft: setDp(25), resizeMode: 'contain'},
+  messageImage: { width: setDp(20), height: setDp(25), marginLeft: setDp(25), resizeMode: 'contain' },
   rightBtnFirst: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#DCDCDC',
     borderBottomWidth: 0.3,
     shadowColor: '#000000',
-    shadowOffset: {width: 0, height: 0.1},
+    shadowOffset: { width: 0, height: 0.1 },
     alignItems: 'center',
   },
   title: {

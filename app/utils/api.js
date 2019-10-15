@@ -1,5 +1,5 @@
 import Storage from './Storage';
-import {ACCESS_TOKEN} from '../config';
+import { ACCESS_TOKEN } from '../config';
 
 let tokenCache = ''; // 缓存的token变量
 
@@ -14,6 +14,7 @@ export const updateTokenCache = (token) => {
 
 /* 从缓存中获取token */
 export const getToken = () =>
+  // eslint-disable-next-line consistent-return
   new Promise((resolve, reject) => {
     if (tokenCache) {
       return resolve(tokenCache);

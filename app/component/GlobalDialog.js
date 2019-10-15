@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
-import React, {Component} from 'react';
-import reactotron from 'reactotron-react-native';
+import React, { Component } from 'react';
 import {
   View,
   Text,
@@ -9,7 +8,7 @@ import {
   StyleSheet,
   Dimensions,
 } from 'react-native';
-import {setDp} from '../utils/screenUtils';
+import { setDp } from '../utils/screenUtils';
 
 const screenW = Dimensions.get('window').width;
 const screenH = Dimensions.get('window').height;
@@ -43,8 +42,8 @@ export default class GlobalDialog extends Component {
   }
 
   render() {
-    const {alertText, submitText, cancle} = this.state;
-    const {onlyClickBtn, backgroundColor} = this.props;
+    const { alertText, submitText, cancle } = this.state;
+    const { onlyClickBtn, backgroundColor } = this.props;
     if (!this.state.showDialog) {
       return null;
     }
@@ -60,7 +59,7 @@ export default class GlobalDialog extends Component {
         <TouchableWithoutFeedback
           onPress={() => (onlyClickBtn ? null : this.closeDialog())}>
           <View
-            style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <View
               style={{
                 width: setDp(350),
@@ -130,7 +129,7 @@ export default class GlobalDialog extends Component {
                   </TouchableOpacity>
                 </View>
               ) : (
-                <View style={{paddingHorizontal: setDp(25)}}>
+                <View style={{ paddingHorizontal: setDp(25) }}>
                   <TouchableOpacity
                     onPress={() => this.submit()}
                     style={{
@@ -154,8 +153,6 @@ export default class GlobalDialog extends Component {
     if (this.state.submit) {
       this.state.submit();
     }
-    reactotron.log(this.props.submitFunc);
-    reactotron.log(this.state.submit);
   }
 
   showDialog = (fun = null, showText, btntext = '确定', cancle = true) => {
@@ -166,7 +163,6 @@ export default class GlobalDialog extends Component {
       cancle,
     });
     if (fun) {
-      reactotron.log('fun', fun);
       this.setState({
         submit: fun,
       });

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   View,
   Text,
@@ -9,7 +9,7 @@ import {
   Dimensions,
   Image,
 } from 'react-native';
-import {setDp} from '../utils/screenUtils';
+import { setDp } from '../utils/screenUtils';
 import warnning from '../assest/warnning.png';
 
 const screenW = Dimensions.get('window').width;
@@ -44,8 +44,8 @@ export default class CommonDialog extends Component {
   }
 
   render() {
-    const {alertText, submitText, cancle} = this.state;
-    const {onlyClickBtn, backgroundColor} = this.props;
+    const { alertText, submitText, cancle } = this.state;
+    const { onlyClickBtn, backgroundColor } = this.props;
     if (!this.state.showDialog) {
       return null;
     }
@@ -61,7 +61,7 @@ export default class CommonDialog extends Component {
         <TouchableWithoutFeedback
           onPress={() => (onlyClickBtn ? null : this.closeDialog())}>
           <View
-            style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <View
               style={{
                 width: setDp(373),
@@ -102,7 +102,7 @@ export default class CommonDialog extends Component {
                   {alertText}
                 </Text>
               </View>
-              <View style={{flex: 1}} />
+              <View style={{ flex: 1 }} />
               {cancle ? (
                 <View
                   style={{

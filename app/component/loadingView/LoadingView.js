@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {View, Dimensions, StyleSheet} from 'react-native';
+import React, { Component } from 'react';
+import { View, Dimensions, StyleSheet } from 'react-native';
 import LottieAnimation from './Animation';
 
 const screenW = Dimensions.get('window').width;
@@ -8,6 +8,7 @@ export default class LoadingView extends Component {
     super(props);
     this.state = {
       showLoading: false,
+      display: false,
     };
   }
 
@@ -39,6 +40,5 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.4)',
     justifyContent: 'center',
     alignItems: 'center',
-    display: this.state.display,
   },
 });

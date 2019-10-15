@@ -1,9 +1,9 @@
-import {DeviceEventEmitter} from 'react-native';
-import {API_VERSION, BASE_URL} from '../config';
-import LoadingUtil from '../utils/loadingUtils';
-import {getToken} from './api';
-import {ToastUtil} from './Toast';
-import {NET_NOT_CONNECT} from '../const/AppConst';
+import { DeviceEventEmitter } from 'react-native';
+import { API_VERSION, BASE_URL } from '../config';
+import LoadingUtil from './loadingUtils';
+import { getToken } from './api';
+import { ToastUtil } from './Toast';
+import { NET_NOT_CONNECT } from '../const/AppConst';
 
 export default class FetchUtils {
   static get = (url, baseurl = BASE_URL) =>
@@ -16,9 +16,9 @@ export default class FetchUtils {
       fetch(baseurl + url)
         .then((response) => {
           if (response) {
-            return response.json() || {data: []};
+            return response.json() || { data: [] };
           }
-          return {code: response.status, desc: NET_NOT_CONNECT};
+          return { code: response.status, desc: NET_NOT_CONNECT };
         })
         .then((result) => {
           resolve(result || {});
@@ -38,9 +38,9 @@ export default class FetchUtils {
       fetch(url)
         .then((response) => {
           if (response) {
-            return response.json() || {data: []};
+            return response.json() || { data: [] };
           }
-          return {code: response.status, desc: NET_NOT_CONNECT};
+          return { code: response.status, desc: NET_NOT_CONNECT };
         })
         .then((result) => {
           resolve(result || {});
@@ -52,12 +52,12 @@ export default class FetchUtils {
 
   static post = (url, data) =>
     getToken()
-      .then((token) => {
+      .then((token) =>
         // console.log('url', url);
         // console.log('data', data);
         // console.log('token', token);
 
-        return new Promise((resolve, reject) => {
+         new Promise((resolve, reject) => {
           if (!global.isConnected) {
             ToastUtil.center(NET_NOT_CONNECT);
             LoadingUtil.dismissLoading();
@@ -73,9 +73,9 @@ export default class FetchUtils {
           })
             .then((response) => {
               if (response) {
-                return response.json() || {data: []};
+                return response.json() || { data: [] };
               }
-              return {code: response.status, desc: NET_NOT_CONNECT};
+              return { code: response.status, desc: NET_NOT_CONNECT };
             })
             .then((result) => {
               //Token过期退出登录
@@ -89,16 +89,15 @@ export default class FetchUtils {
             .catch(() => {
               reject();
             });
-        });
-      })
+        })
+      )
       .catch((error) => {
         ToastUtil.center('获取token失败', error);
       });
 
   static postCESHI = (url, data) =>
     getToken()
-      .then((token) => {
-        return new Promise((resolve, reject) => {
+      .then((token) => new Promise((resolve, reject) => {
           if (!global.isConnected) {
             ToastUtil.center(NET_NOT_CONNECT);
             LoadingUtil.dismissLoading();
@@ -114,9 +113,9 @@ export default class FetchUtils {
           })
             .then((response) => {
               if (response) {
-                return response.json() || {data: []};
+                return response.json() || { data: [] };
               }
-              return {code: response.status, desc: NET_NOT_CONNECT};
+              return { code: response.status, desc: NET_NOT_CONNECT };
             })
             .then((result) => {
               if (result.code === 4100) {
@@ -125,11 +124,10 @@ export default class FetchUtils {
               }
               resolve(result || {});
             })
-            .catch((error) => {
+            .catch(() => {
               reject();
             });
-        });
-      })
+        }))
       .catch((error) => {
         ToastUtil.center('获取token失败', error);
       });
@@ -150,9 +148,9 @@ export default class FetchUtils {
       })
         .then((response) => {
           if (response) {
-            return response.json() || {data: []};
+            return response.json() || { data: [] };
           }
-          return {code: response.status, desc: NET_NOT_CONNECT};
+          return { code: response.status, desc: NET_NOT_CONNECT };
         })
         .then((result) => {
           resolve(result || {});
@@ -189,9 +187,9 @@ export default class FetchUtils {
       })
         .then((response) => {
           if (response) {
-            return response.json() || {data: []};
+            return response.json() || { data: [] };
           }
-          return {code: response.status, desc: NET_NOT_CONNECT};
+          return { code: response.status, desc: NET_NOT_CONNECT };
         })
         .then((result) => {
           resolve(result || {});
@@ -204,8 +202,7 @@ export default class FetchUtils {
 
   static loginOut = () =>
     getToken()
-      .then((token) => {
-        return new Promise((resolve, reject) => {
+      .then((token) => new Promise((resolve, reject) => {
           if (!global.isConnected) {
             ToastUtil.center(NET_NOT_CONNECT);
             LoadingUtil.dismissLoading();
@@ -216,13 +213,13 @@ export default class FetchUtils {
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({token}),
+            body: JSON.stringify({ token }),
           })
             .then((response) => {
               if (response) {
-                return response.json() || {data: []};
+                return response.json() || { data: [] };
               }
-              return {code: response.status, desc: NET_NOT_CONNECT};
+              return { code: response.status, desc: NET_NOT_CONNECT };
             })
             .then((result) => {
               resolve(result || {});
@@ -230,16 +227,14 @@ export default class FetchUtils {
             .catch(() => {
               reject();
             });
-        });
-      })
+        }))
       .catch((error) => {
         ToastUtil.center('退出登录失败:', error);
       });
 
   static postUrl = (url, data) =>
     getToken()
-      .then((token) => {
-        return new Promise((resolve, reject) => {
+      .then((token) => new Promise((resolve, reject) => {
           if (!global.isConnected) {
             ToastUtil.center(NET_NOT_CONNECT);
             LoadingUtil.dismissLoading();
@@ -255,23 +250,21 @@ export default class FetchUtils {
           })
             .then((response) => {
               if (response) {
-                return response.json() || {data: []};
+                return response.json() || { data: [] };
               }
-              return {code: response.status, desc: NET_NOT_CONNECT};
+              return { code: response.status, desc: NET_NOT_CONNECT };
             })
             .then((result) => {
               if (result.code === 4100) {
                 DeviceEventEmitter.emit('loginOut');
                 return;
               }
-              console.log(`result===>${result}`);
               resolve(result || {});
             })
             .catch(() => {
               reject();
             });
-        });
-      })
+        }))
       .catch((error) => {
         ToastUtil.center('获取token失败', error);
       });

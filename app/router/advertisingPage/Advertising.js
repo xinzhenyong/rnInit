@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
-import {View} from 'react-native';
-import {NavigationActions, StackActions} from 'react-navigation';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { View } from 'react-native';
+import { NavigationActions, StackActions } from 'react-navigation';
+import { connect } from 'react-redux';
 // import {userInfo} from '../../../actions/UserInfo';
-import {ACCESS_TOKEN} from '../../config';
+import { ACCESS_TOKEN } from '../../config';
 import Storage from '../../utils/Storage';
 
 /** 启动过渡页 */
@@ -20,6 +20,7 @@ class Advertising extends Component {
   UNSAFE_componentWillMount() {
     Storage.get(ACCESS_TOKEN)
       .then((result) => {
+        // eslint-disable-next-line no-param-reassign
         result = 'test';
         if (result && result !== '') {
           // this.props.userInfo(this.props.navigation, true);
@@ -36,7 +37,7 @@ class Advertising extends Component {
   gotoHome() {
     const resetAction = StackActions.reset({
       index: 0,
-      actions: [NavigationActions.navigate({routeName: 'TabNavigator'})],
+      actions: [NavigationActions.navigate({ routeName: 'TabNavigator' })],
     });
     this.props.navigation.dispatch(resetAction);
   }
@@ -44,7 +45,7 @@ class Advertising extends Component {
   gotoLogin() {
     const resetAction = StackActions.reset({
       index: 0,
-      actions: [NavigationActions.navigate({routeName: 'Login'})],
+      actions: [NavigationActions.navigate({ routeName: 'Login' })],
     });
     this.props.navigation.dispatch(resetAction);
   }
@@ -52,7 +53,7 @@ class Advertising extends Component {
 
 export default connect(
   () => ({}),
-  (dispatch) => ({
+  () => ({
     // userInfo: (navigation, status) => dispatch(userInfo(navigation, status)),
   }),
 )(Advertising);

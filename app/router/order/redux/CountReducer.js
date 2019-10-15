@@ -1,12 +1,10 @@
 import * as TYPES from '../../../const/ActionType';
 
-export const add = () => {
-  return (dispatch) => {
+export const add = () => (dispatch) => {
     dispatch({
       type: TYPES.ACTION_COUNT,
     });
   };
-};
 
 export default function getCount(state = 0, action) {
   switch (action.type) {

@@ -1,4 +1,4 @@
-import {API_VERSION} from './config';
+import { API_VERSION } from './config';
 
 /**
  * 订单

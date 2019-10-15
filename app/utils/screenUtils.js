@@ -4,7 +4,7 @@
  * width:750px
  * height:1334px
  */
-import {Dimensions, PixelRatio, Platform} from 'react-native';
+import { Dimensions, PixelRatio, Platform } from 'react-native';
 
 export const screenW = Dimensions.get('window').width;
 export const screenH = Dimensions.get('window').height;

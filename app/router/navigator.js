@@ -1,4 +1,4 @@
-import {createStackNavigator, createAppContainer} from 'react-navigation';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 import Advertising from './advertisingPage/Advertising';
 import Home from './home/Home';
 import Order from './order/Order';
